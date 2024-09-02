@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"],
+  darkMode: "media",
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -71,6 +71,106 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      typography: () => ({
+        DEFAULT: {
+          css: {
+            color: "hsl(var(--foreground))",
+            '[class~="lead"]': {
+              color: "hsl(var(--foreground))",
+            },
+            a: {
+              color: "hsl(var(--primary))",
+            },
+            strong: {
+              color: "hsl(var(--foreground))",
+            },
+            "a strong": {
+              color: "hsl(var(--primary))",
+            },
+            "blockquote strong": {
+              color: "hsl(var(--foreground))",
+            },
+            "thead th strong": {
+              color: "hsl(var(--foreground))",
+            },
+            "ol > li::marker": {
+              color: "hsl(var(--foreground))",
+            },
+            "ul > li::marker": {
+              color: "hsl(var(--foreground))",
+            },
+            dt: {
+              color: "hsl(var(--foreground))",
+            },
+            blockquote: {
+              color: "hsl(var(--foreground))",
+            },
+            h1: {
+              color: "hsl(var(--foreground))",
+            },
+            "h1 strong": {
+              color: "hsl(var(--foreground))",
+            },
+            h2: {
+              color: "hsl(var(--foreground))",
+            },
+            "h2 strong": {
+              color: "hsl(var(--foreground))",
+            },
+            h3: {
+              color: "hsl(var(--foreground))",
+            },
+            "h3 strong": {
+              color: "hsl(var(--foreground))",
+            },
+            h4: {
+              color: "hsl(var(--foreground))",
+            },
+            "h4 strong": {
+              color: "hsl(var(--foreground))",
+            },
+            kbd: {
+              color: "hsl(var(--foreground))",
+            },
+            code: {
+              color: "hsl(var(--foreground))",
+            },
+            "a code": {
+              color: "hsl(var(--primary))",
+            },
+            "h1 code": {
+              color: "hsl(var(--foreground))",
+            },
+            "h2 code": {
+              color: "hsl(var(--foreground))",
+            },
+            "h3 code": {
+              color: "hsl(var(--foreground))",
+            },
+            "h4 code": {
+              color: "hsl(var(--foreground))",
+            },
+            "blockquote code": {
+              color: "hsl(var(--foreground))",
+            },
+            "thead th code": {
+              color: "hsl(var(--foreground))",
+            },
+            pre: {
+              color: "hsl(var(--foreground))",
+            },
+            "pre code": {
+              color: "hsl(var(--foreground))",
+            },
+            "thead th": {
+              color: "hsl(var(--foreground))",
+            },
+            figcaption: {
+              color: "hsl(var(--foreground))",
+            },
+          },
+        },
+      }),
     },
   },
   plugins: [require("@tailwindcss/typography"), require("tailwindcss-animate")],
