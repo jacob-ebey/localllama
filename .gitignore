@@ -1,0 +1,5 @@
+.DS_Store
+build
+node_modules
+*.sqlite
+vite.config.ts.timestamp*
