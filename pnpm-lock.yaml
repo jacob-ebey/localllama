@@ -18,6 +18,22 @@ importers:
 
   .:
     dependencies:
+      '@remix-run/express':
+        specifier: 0.0.0-nightly-93d1c9dec-20240829
+        version: 0.0.0-nightly-93d1c9dec-20240829(express@4.19.2)(typescript@5.5.4)
+      better-sqlite3:
+        specifier: 11.2.1
+        version: 11.2.1
+      drizzle-orm:
+        specifier: 0.33.0
+        version: 0.33.0(@types/better-sqlite3@7.6.11)(@types/react@18.3.4)(better-sqlite3@11.2.1)(react@19.0.0-rc-e56f4ae3-20240830)
+      express:
+        specifier: ^4.19.2
+        version: 4.19.2
+      ollama:
+        specifier: 0.5.8
+        version: 0.5.8
+    devDependencies:
       '@radix-ui/react-dialog':
         specifier: ^1.1.1
         version: 1.1.1(@types/react-dom@18.3.0)(@types/react@18.3.4)(react-dom@19.0.0-rc-e56f4ae3-20240830(react@19.0.0-rc-e56f4ae3-20240830))(react@19.0.0-rc-e56f4ae3-20240830)
@@ -51,62 +67,19 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@18.3.0)(@types/react@18.3.4)(react-dom@19.0.0-rc-e56f4ae3-20240830(react@19.0.0-rc-e56f4ae3-20240830))(react@19.0.0-rc-e56f4ae3-20240830)
-      '@remix-run/express':
+      '@remix-run/dev':
         specifier: 0.0.0-nightly-93d1c9dec-20240829
-        version: 0.0.0-nightly-93d1c9dec-20240829(express@4.19.2)(typescript@5.5.4)
+        version: 0.0.0-nightly-93d1c9dec-20240829(@remix-run/react@0.0.0-nightly-93d1c9dec-20240829(react-dom@19.0.0-rc-e56f4ae3-20240830(react@19.0.0-rc-e56f4ae3-20240830))(react@19.0.0-rc-e56f4ae3-20240830)(typescript@5.5.4))(@remix-run/serve@0.0.0-nightly-93d1c9dec-20240829(typescript@5.5.4))(@types/node@22.5.1)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1))
       '@remix-run/node':
         specifier: 0.0.0-nightly-93d1c9dec-20240829
         version: 0.0.0-nightly-93d1c9dec-20240829(typescript@5.5.4)
       '@remix-run/react':
         specifier: 0.0.0-nightly-93d1c9dec-20240829
         version: 0.0.0-nightly-93d1c9dec-20240829(react-dom@19.0.0-rc-e56f4ae3-20240830(react@19.0.0-rc-e56f4ae3-20240830))(react@19.0.0-rc-e56f4ae3-20240830)(typescript@5.5.4)
-      '@remix-run/server-runtime':
+      '@remix-run/serve':
         specifier: 0.0.0-nightly-93d1c9dec-20240829
         version: 0.0.0-nightly-93d1c9dec-20240829(typescript@5.5.4)
-      better-sqlite3:
-        specifier: 11.2.1
-        version: 11.2.1
-      class-variance-authority:
-        specifier: ^0.7.0
-        version: 0.7.0
-      clsx:
-        specifier: ^2.1.1
-        version: 2.1.1
-      drizzle-orm:
-        specifier: 0.33.0
-        version: 0.33.0(@types/better-sqlite3@7.6.11)(@types/react@18.3.4)(better-sqlite3@11.2.1)(react@19.0.0-rc-e56f4ae3-20240830)
-      express:
-        specifier: ^4.19.2
-        version: 4.19.2
-      isbot:
-        specifier: 5.1.17
-        version: 5.1.17
-      lucide-react:
-        specifier: 0.436.0
-        version: 0.436.0(react@19.0.0-rc-e56f4ae3-20240830)
-      ollama:
-        specifier: 0.5.8
-        version: 0.5.8
-      react:
-        specifier: 19.0.0-rc-e56f4ae3-20240830
-        version: 19.0.0-rc-e56f4ae3-20240830
-      react-dom:
-        specifier: 19.0.0-rc-e56f4ae3-20240830
-        version: 19.0.0-rc-e56f4ae3-20240830(react@19.0.0-rc-e56f4ae3-20240830)
-      react-markdown:
-        specifier: 9.0.1
-        version: 9.0.1(@types/react@18.3.4)(react@19.0.0-rc-e56f4ae3-20240830)
-      tailwind-merge:
-        specifier: ^2.5.2
-        version: 2.5.2
-      tailwindcss-animate:
-        specifier: ^1.0.7
-        version: 1.0.7(tailwindcss@3.4.10)
-    devDependencies:
-      '@remix-run/dev':
-        specifier: 0.0.0-nightly-93d1c9dec-20240829
-        version: 0.0.0-nightly-93d1c9dec-20240829(@remix-run/react@0.0.0-nightly-93d1c9dec-20240829(react-dom@19.0.0-rc-e56f4ae3-20240830(react@19.0.0-rc-e56f4ae3-20240830))(react@19.0.0-rc-e56f4ae3-20240830)(typescript@5.5.4))(@remix-run/serve@0.0.0-nightly-93d1c9dec-20240829(typescript@5.5.4))(@types/node@22.5.1)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.1))
-      '@remix-run/serve':
+      '@remix-run/server-runtime':
         specifier: 0.0.0-nightly-93d1c9dec-20240829
         version: 0.0.0-nightly-93d1c9dec-20240829(typescript@5.5.4)
       '@tailwindcss/typography':
@@ -127,15 +100,42 @@ importers:
       autoprefixer:
         specifier: 10.4.20
         version: 10.4.20(postcss@8.4.41)
+      class-variance-authority:
+        specifier: ^0.7.0
+        version: 0.7.0
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       drizzle-kit:
         specifier: 0.24.2
         version: 0.24.2
+      isbot:
+        specifier: 5.1.17
+        version: 5.1.17
+      lucide-react:
+        specifier: 0.436.0
+        version: 0.436.0(react@19.0.0-rc-e56f4ae3-20240830)
       postcss:
         specifier: 8.4.41
         version: 8.4.41
+      react:
+        specifier: 19.0.0-rc-e56f4ae3-20240830
+        version: 19.0.0-rc-e56f4ae3-20240830
+      react-dom:
+        specifier: 19.0.0-rc-e56f4ae3-20240830
+        version: 19.0.0-rc-e56f4ae3-20240830(react@19.0.0-rc-e56f4ae3-20240830)
+      react-markdown:
+        specifier: 9.0.1
+        version: 9.0.1(@types/react@18.3.4)(react@19.0.0-rc-e56f4ae3-20240830)
+      tailwind-merge:
+        specifier: ^2.5.2
+        version: 2.5.2
       tailwindcss:
         specifier: 3.4.10
         version: 3.4.10
+      tailwindcss-animate:
+        specifier: ^1.0.7
+        version: 1.0.7(tailwindcss@3.4.10)
       typescript:
         specifier: 5.5.4
         version: 5.5.4

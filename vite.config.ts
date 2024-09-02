@@ -9,6 +9,10 @@ declare module "@remix-run/server-runtime" {
 }
 
 export default defineConfig({
+  ssr: {
+    noExternal: true,
+    external: ["better-sqlite3", "drizzle-orm", "ollama"],
+  },
   plugins: [
     tsconfigPaths(),
     remix({

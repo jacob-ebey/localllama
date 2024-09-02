@@ -17,6 +17,9 @@ function getGlobalSettingsFilePath() {
 export async function getGlobalSettings(): Promise<GlobalSettings> {
   const defaultOllamaHost = process.env.OLLAMA_HOST ?? "http://localhost:11434";
   try {
+    await fsp.mkdir(path.dirname(getGlobalSettingsFilePath()), {
+      recursive: true,
+    });
     const content = await fsp.readFile(getGlobalSettingsFilePath(), "utf8");
     let parsed = JSON.parse(content);
     parsed = typeof parsed === "object" ? parsed : {};
