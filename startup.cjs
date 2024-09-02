@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
 
@@ -8,6 +9,8 @@ const Database = require("better-sqlite3");
 const { drizzle } = require("drizzle-orm/better-sqlite3");
 const { migrate } = require("drizzle-orm/better-sqlite3/migrator");
 const express = require("express");
+
+fs.mkdirSync(path.join(os.homedir(), ".localllama"), { recursive: true });
 
 const sqlite = new Database(
   path.join(os.homedir(), ".localllama", "db.sqlite")
