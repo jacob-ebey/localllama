@@ -118,13 +118,13 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
           <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
             <Tooltip>
               <TooltipTrigger asChild>
-                <a
-                  href="/settings"
+                <NavLink
+                  to="/settings"
                   className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground [&[aria-current=page]]:bg-accent [&[aria-current=page]]:text-accent-foreground"
                 >
                   <Settings className="h-5 w-5" />
                   <span className="sr-only">Global Settings</span>
-                </a>
+                </NavLink>
               </TooltipTrigger>
               <TooltipContent side="right">Global Settings</TooltipContent>
             </Tooltip>
