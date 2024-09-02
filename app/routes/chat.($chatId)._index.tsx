@@ -423,11 +423,9 @@ export default function Chat() {
           <div className="flex-1 mb-4" />
           <TooltipProvider>
             <div className="sticky bottom-0 bg-background pb-4">
-              <Form
+              <fetcher.Form
                 method="POST"
-                navigate={false}
                 key={location.key}
-                fetcherKey={location.key}
                 className="overflow-hidden rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring"
                 onSubmit={(event) => {
                   if (formDisabled) {
@@ -518,7 +516,7 @@ export default function Chat() {
                     <TooltipContent side="top">Chat Settings</TooltipContent>
                   </Tooltip>
                 </div>
-              </Form>
+              </fetcher.Form>
             </div>
           </TooltipProvider>
         </main>

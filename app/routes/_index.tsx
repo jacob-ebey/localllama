@@ -30,7 +30,7 @@ export default function Dashboard() {
     <main className="flex flex-col flex-1 items-start gap-4 p-4">
       <div className="flex items-center w-full">
         <div className="ml-auto flex items-center gap-2">
-          <Button size="sm" className="h-8 gap-1" asChild>
+          <Button size="sm" className="gap-1" asChild>
             <Link to="/chat">
               <PlusCircle className="h-3.5 w-3.5" />
               <span className="whitespace-nowrap">New Chat</span>
