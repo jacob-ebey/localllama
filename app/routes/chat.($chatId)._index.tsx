@@ -230,11 +230,6 @@ export async function action({ request, params }: ActionFunctionArgs) {
 
   const readyToSave = new Deferred<void>();
   try {
-    console.log({
-      model,
-      systemPrompt,
-      temperature,
-    });
     const response = await ollama.chat({
       stream: true,
       model,
