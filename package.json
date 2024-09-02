@@ -1,6 +1,6 @@
 {
   "name": "localllama",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "license": "ISC",
   "readme": "README.md",
@@ -26,6 +26,7 @@
   "pnpm": {
     "overrides": {
       "@remix-run/dev": "0.0.0-nightly-93d1c9dec-20240829",
+      "@remix-run/express": "0.0.0-nightly-93d1c9dec-20240829",
       "@remix-run/node": "0.0.0-nightly-93d1c9dec-20240829",
       "@remix-run/react": "0.0.0-nightly-93d1c9dec-20240829",
       "@remix-run/serve": "0.0.0-nightly-93d1c9dec-20240829",
@@ -46,6 +47,7 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-tabs": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.2",
+    "@remix-run/express": "0.0.0-nightly-93d1c9dec-20240829",
     "@remix-run/node": "0.0.0-nightly-93d1c9dec-20240829",
     "@remix-run/react": "0.0.0-nightly-93d1c9dec-20240829",
     "@remix-run/server-runtime": "0.0.0-nightly-93d1c9dec-20240829",
@@ -53,6 +55,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "drizzle-orm": "0.33.0",
+    "express": "^4.19.2",
     "isbot": "5.1.17",
     "lucide-react": "0.436.0",
     "ollama": "0.5.8",
