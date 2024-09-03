@@ -137,7 +137,6 @@ export async function action({ request, params }: ActionFunctionArgs) {
   let temperature = temperatureStr ? Number.parseFloat(temperatureStr) : NaN;
 
   let chatHistory: Message[] = [];
-
   let chatId: number | null = null;
   if (params.chatId) {
     let lookupId = Number.parseInt(params.chatId);
@@ -147,14 +146,12 @@ export async function action({ request, params }: ActionFunctionArgs) {
       };
     }
     const chat = await getChat(lookupId);
-    systemPrompt = (systemPrompt || chat?.prompt) ?? null;
-    if (systemPrompt) {
-      chatHistory.push({
-        role: "system",
-        content: systemPrompt,
-      });
-    }
     chatId = chat?.id ?? null;
+
+    if (!systemPrompt && chat?.prompt) {
+      systemPrompt = chat.prompt;
+    }
+
     temperature = Number.isFinite(temperature)
       ? temperature
       : chat?.temperature ?? settings.defaultTemperature;
@@ -164,6 +161,12 @@ export async function action({ request, params }: ActionFunctionArgs) {
         content: message.content,
       });
     }
+  }
+  if (systemPrompt) {
+    chatHistory.unshift({
+      role: "system",
+      content: systemPrompt,
+    });
   }
 
   const ollama = new Ollama({
@@ -579,6 +582,7 @@ export default function Chat() {
             <div className="grid w-full gap-1.5">
               <Label htmlFor="system-prompt">System Prompt</Label>
               <Textarea
+                name="systemPrompt"
                 required
                 placeholder="You are a helpful assistant."
                 id="system-prompt"

@@ -197,6 +197,7 @@ export default function GeneralSettings() {
               aria-labelledby="system-prompt-title"
               name="defaultSystemPrompt"
               placeholder="You are a helpful assistant."
+              defaultValue={settings.defaultSystemPrompt}
             />
           </CardContent>
           <CardFooter className="border-t px-6 py-4">
