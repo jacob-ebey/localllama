@@ -1,5 +1,5 @@
 import { useFetcher, useLoaderData } from "@remix-run/react";
-import { Ollama } from "ollama";
+import type { ActionFunctionArgs } from "@remix-run/node";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -10,7 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ActionFunctionArgs } from "@remix-run/server-runtime";
 import { Input } from "@/components/ui/input";
 import { getGlobalSettings, updateGlobalSettings } from "@/lib/settings.server";
 
@@ -34,9 +33,9 @@ export async function action({ request }: ActionFunctionArgs) {
 }
 
 export default function OllamaSettings() {
-  const { settings } = useLoaderData() as Awaited<ReturnType<typeof loader>>;
+  const { settings } = useLoaderData<typeof loader>();
 
-  const ollamaHostFetcher = useFetcher();
+  const ollamaHostFetcher = useFetcher<typeof action>();
 
   return (
     <div className="grid gap-6">

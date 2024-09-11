@@ -1,8 +1,9 @@
 import type { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
-import {
-  Form,
+import type {
   MetaFunction,
   ShouldRevalidateFunctionArgs,
+} from "@remix-run/react";
+import {
   useFetcher,
   useLoaderData,
   useLocation,
@@ -37,7 +38,10 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useChatChunk } from "@/lib/chat";
-import type { Chat, ChatMessage as ChatMessageType } from "@/lib/chat.server";
+import type {
+  Chat as ChatType,
+  ChatMessage as ChatMessageType,
+} from "@/lib/chat.server";
 import {
   createChat,
   createMessage,
@@ -71,11 +75,9 @@ export const handle = {
   ],
 };
 
-export const meta = ({
-  data,
-}: {
-  data?: Awaited<ReturnType<typeof loader>>;
-}) => [{ title: `${data?.chat.name ?? "New Chat"} | Local Llama` }];
+export const meta: MetaFunction<typeof loader> = ({ data }) => [
+  { title: `${data?.chat.name ?? "New Chat"} | Local Llama` },
+];
 
 export async function loader({ params, request }: LoaderFunctionArgs) {
   const chatId = params.chatId ? Number.parseInt(params.chatId) : NaN;
@@ -87,7 +89,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
   const modelsPromise = ollama.list().then((r) => r.models.map((m) => m.name));
   const settingsPromise = getGlobalSettings();
 
-  const chat: Chat = (Number.isSafeInteger(chatId)
+  const chat: ChatType = (Number.isSafeInteger(chatId)
     ? await getChat(chatId)
     : null) ?? {
     id: NaN,
@@ -128,7 +130,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
       error: "Invalid system prompt",
     };
   }
-  let temperatureStr = formData.get("temperature");
+  const temperatureStr = formData.get("temperature");
   if (temperatureStr && typeof temperatureStr !== "string") {
     return {
       error: "Invalid temperature",
@@ -136,10 +138,10 @@ export async function action({ request, params }: ActionFunctionArgs) {
   }
   let temperature = temperatureStr ? Number.parseFloat(temperatureStr) : NaN;
 
-  let chatHistory: Message[] = [];
+  const chatHistory: Message[] = [];
   let chatId: number | null = null;
   if (params.chatId) {
-    let lookupId = Number.parseInt(params.chatId);
+    const lookupId = Number.parseInt(params.chatId);
     if (!Number.isSafeInteger(lookupId)) {
       return {
         error: "Invalid chat ID",
@@ -293,21 +295,15 @@ export function shouldRevalidate({
 }
 
 export default function Chat() {
-  const { chat, models, settings } = useLoaderData<typeof loader>() as Awaited<
-    ReturnType<typeof loader>
-  >;
+  const { chat, models, settings } = useLoaderData<typeof loader>();
   const location = useLocation();
-  const fetcher = useFetcher({ key: location.key });
-  const {
-    error,
-    newChatId: newId,
-    assistantResponse,
-  } = (fetcher.data as Awaited<ReturnType<typeof action>> | undefined) ?? {};
+  const fetcher = useFetcher<typeof action>({ key: location.key });
+  const { error, newChatId: newId, assistantResponse } = fetcher.data ?? {};
   const navigate = useNavigate();
   const navigation = useNavigation();
 
   const [{ messages, renderStream }, setState] = useState<
-    Omit<Chat, "messages"> & {
+    Omit<ChatType, "messages"> & {
       messages: (Omit<ChatMessageType, "id"> & { id: string | number })[];
       renderStream: boolean;
     }

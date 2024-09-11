@@ -7,8 +7,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { getChats } from "@/lib/chat.server";
-import { Link, MetaFunction, useLoaderData } from "@remix-run/react";
-import { LoaderFunctionArgs } from "@remix-run/server-runtime";
+import type { MetaFunction } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 import { PlusCircle } from "lucide-react";
 
 export const handle = {
@@ -17,14 +17,14 @@ export const handle = {
 
 export const meta: MetaFunction = () => [{ title: "Dashboard | Local Llama" }];
 
-export async function loader({}: LoaderFunctionArgs) {
+export async function loader() {
   const chats = await getChats();
 
   return { chats };
 }
 
 export default function Dashboard() {
-  const { chats } = useLoaderData() as Awaited<ReturnType<typeof loader>>;
+  const { chats } = useLoaderData<typeof loader>();
 
   return (
     <main className="flex flex-col flex-1 items-start gap-4 p-4">

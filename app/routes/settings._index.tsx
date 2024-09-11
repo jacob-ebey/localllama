@@ -19,7 +19,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import {
+import type {
   ActionFunctionArgs,
   LoaderFunctionArgs,
 } from "@remix-run/server-runtime";
@@ -74,9 +74,7 @@ export async function action({ request }: ActionFunctionArgs) {
 }
 
 export default function GeneralSettings() {
-  const { models, settings } = useLoaderData() as Awaited<
-    ReturnType<typeof loader>
-  >;
+  const { models, settings } = useLoaderData<typeof loader>();
   const defaultModelRef = useRef<HTMLInputElement>(null);
 
   const [defaultTemperature, setDefaultTemperature] = useState(
@@ -86,9 +84,9 @@ export default function GeneralSettings() {
     setDefaultTemperature(settings.defaultTemperature);
   }, [settings]);
 
-  const defaultModelFetcher = useFetcher();
-  const defaultTemperatureFetcher = useFetcher();
-  const defaultSystemPromptFetcher = useFetcher();
+  const defaultModelFetcher = useFetcher<typeof action>();
+  const defaultTemperatureFetcher = useFetcher<typeof action>();
+  const defaultSystemPromptFetcher = useFetcher<typeof action>();
 
   return (
     <div className="grid gap-6">
@@ -103,14 +101,14 @@ export default function GeneralSettings() {
           </CardHeader>
           <CardContent>
             <input
-              key={"hidden|" + settings.defaultModel}
+              key={`hidden|${settings.defaultModel}`}
               defaultValue={settings.defaultModel}
               type="hidden"
               name="defaultModel"
               ref={defaultModelRef}
             />
             <Select
-              key={"select|" + settings.defaultModel}
+              key={`select|${settings.defaultModel}`}
               defaultValue={settings.defaultModel}
               onValueChange={(model) => {
                 if (defaultModelRef.current) {
